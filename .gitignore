@@ -1,0 +1,21 @@
+# Reference clone of upstream comic app (do not treat as product source of truth)
+_ref/
+
+# Pipeline runtime
+_workspace/
+_workspace_prev/
+clip-package/
+
+# Secrets & env
+.env
+.env.*
+!.env.example
+
+# Node (if added later)
+node_modules/
+dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
