@@ -2,6 +2,16 @@
 
 `manga-gong-bang`(만화 공방)을 **수정하지 않고**, export → 멀티샷 → **Kling 7축 프롬프트 클립 패키지**까지 만드는 후처리 워크플로우 + 에이전트 하네스.
 
+## 최종 목표
+
+→ **[`docs/GOAL.md`](docs/GOAL.md)** (등록·성공 기준·게이트)
+
+```bash
+# 실 export 또는 fixture
+node scripts/run-pipeline.mjs --export path/to/export
+npm run pipeline:fixture
+```
+
 ## Quick start
 
 ```bash
