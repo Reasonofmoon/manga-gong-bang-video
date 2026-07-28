@@ -24,3 +24,4 @@
 |------|----------|------|------|
 | 2026-07-28 | 초기 하네스 구성 (agents 5 + skills 6 + schemas + fixture + validate) | 전체 | 스펙 승인 후 MVP 구축 |
 | 2026-07-28 | assemble-clip-package를 breakdown+drafts 입력으로 일반화; run 노트 추가 | scripts/, docs/runs/ | fixture E2E 후 제안 실행 |
+| 2026-07-28 | bootstrap-workspace-from-export CLI; EXPORT_DIR 파이프라인 run 20260728-192715 | scripts/bootstrap-*.mjs | 경로 미지정 시 fixture로 전체 재실행 |
