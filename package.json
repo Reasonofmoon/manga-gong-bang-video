@@ -1,0 +1,15 @@
+{
+  "name": "manga-gong-bang-video",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Manga-to-Kling clip package workflow (does not modify manga-gong-bang)",
+  "scripts": {
+    "validate:export": "node scripts/validate-export.mjs",
+    "validate:fixture": "node scripts/validate-export.mjs fixtures/sample-export",
+    "validate:shot": "node scripts/validate-shot.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

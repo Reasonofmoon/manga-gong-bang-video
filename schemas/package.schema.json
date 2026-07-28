@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://manga-gong-bang-video.local/schemas/package.schema.json",
+  "title": "ClipPackageManifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "projectSlug",
+    "generatedAt",
+    "status",
+    "sourceExport",
+    "project",
+    "shots"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "projectSlug": { "type": "string", "minLength": 1 },
+    "generatedAt": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["ready", "draft"] },
+    "sourceExport": { "type": "string" },
+    "harnessVersion": { "type": "string" },
+    "project": {
+      "type": "object",
+      "required": ["title", "genre", "tone", "language"],
+      "properties": {
+        "title": { "type": "string" },
+        "genre": { "type": "string" },
+        "tone": { "type": "string" },
+        "language": { "type": "string" },
+        "stylePreset": { "type": "string" }
+      }
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["shotId", "dir", "pageIndex", "purpose"],
+        "properties": {
+          "shotId": {
+            "type": "string",
+            "pattern": "^S\\d{2}_p\\d{2}_s\\d{2}$"
+          },
+          "dir": { "type": "string" },
+          "pageIndex": { "type": "integer", "minimum": 0 },
+          "purpose": { "type": "string" },
+          "durationSec": { "type": "number" }
+        }
+      }
+    },
+    "qaSummary": { "type": "string" }
+  }
+}

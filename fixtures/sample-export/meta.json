@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0",
+  "source": "manga-gong-bang",
+  "exportedAt": "2026-07-28T12:00:00.000Z",
+  "project": {
+    "title": "Neon Rain Fixture",
+    "genre": "사이버펑크 스릴러",
+    "tone": "짧고 강렬하게",
+    "language": "ko-KR",
+    "stylePreset": "사이버네온",
+    "stylePrompt": "cyberpunk neon glow aesthetic, holographic UI elements, circuit patterns, futuristic cityscape"
+  },
+  "characters": [
+    {
+      "role": "hero",
+      "name": "Aya",
+      "desc": "Young East Asian woman, short black hair with cyan streak, black leather jacket, determined eyes",
+      "imageFile": "characters/hero.png",
+      "outfit": "black leather jacket, cargo pants",
+      "props": "holo-visor on forehead"
+    },
+    {
+      "role": "friend",
+      "name": "Rex",
+      "desc": "Tall man, undercut, scar on left cheek, grey trench coat",
+      "imageFile": "characters/friend.png"
+    }
+  ],
+  "pages": [
+    {
+      "id": "face-cover",
+      "type": "cover",
+      "pageIndex": 0,
+      "imageFile": "pages/page-00-cover.png",
+      "beat": {
+        "scene": "Aya stands on a neon rooftop overlooking a rainy cyberpunk city at night, title atmosphere",
+        "caption": "NEON RAIN",
+        "focus_char": "hero",
+        "choices": []
+      }
+    },
+    {
+      "id": "face-p1",
+      "type": "story",
+      "pageIndex": 1,
+      "imageFile": "pages/page-01.png",
+      "isDecisionPage": false,
+      "beat": {
+        "scene": "Aya chases a data courier through narrow alleys lined with neon signs and steam vents",
+        "dialogue": "Stop! That drive is stolen!",
+        "focus_char": "hero",
+        "choices": []
+      }
+    },
+    {
+      "id": "face-p2",
+      "type": "story",
+      "pageIndex": 2,
+      "imageFile": "pages/page-02.png",
+      "isDecisionPage": true,
+      "resolvedChoice": "Cut through the market",
+      "beat": {
+        "scene": "At a fork under a holographic billboard, Aya must choose alley or crowded night market; Rex shouts a warning",
+        "dialogue": "Market side—cops are on the other route!",
+        "focus_char": "friend",
+        "choices": ["Cut through the market", "Take the dark alley"]
+      }
+    }
+  ]
+}

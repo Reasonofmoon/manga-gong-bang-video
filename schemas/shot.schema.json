@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://manga-gong-bang-video.local/schemas/shot.schema.json",
+  "title": "ClipPackageShot",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "shotId",
+    "sourcePageId",
+    "pageIndex",
+    "shotInPage",
+    "shotsInPage",
+    "purpose",
+    "durationSec",
+    "axes",
+    "prompt",
+    "negative",
+    "styleSignature",
+    "refImage"
+  ],
+  "properties": {
+    "shotId": {
+      "type": "string",
+      "pattern": "^S\\d{2}_p\\d{2}_s\\d{2}$"
+    },
+    "sourcePageId": { "type": "string", "minLength": 1 },
+    "pageIndex": { "type": "integer", "minimum": 0 },
+    "shotInPage": { "type": "integer", "minimum": 1 },
+    "shotsInPage": { "type": "integer", "minimum": 1, "maximum": 4 },
+    "purpose": {
+      "type": "string",
+      "enum": ["establish", "action", "reaction", "transition", "detail", "other"]
+    },
+    "durationSec": { "type": "number", "minimum": 1, "maximum": 15 },
+    "axes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "camera",
+        "lighting",
+        "color",
+        "texture",
+        "motion",
+        "mood"
+      ],
+      "properties": {
+        "subject": { "type": "string", "minLength": 1 },
+        "camera": { "type": "string", "minLength": 1 },
+        "lighting": { "type": "string", "minLength": 1 },
+        "color": { "type": "string", "minLength": 1 },
+        "texture": { "type": "string", "minLength": 1 },
+        "motion": { "type": "string", "minLength": 1 },
+        "mood": { "type": "string", "minLength": 1 }
+      }
+    },
+    "prompt": { "type": "string", "minLength": 20 },
+    "negative": { "type": "string", "minLength": 1 },
+    "styleSignature": { "type": "string", "minLength": 1 },
+    "refImage": { "type": "string", "minLength": 1 },
+    "dialogueNote": { "type": "string" },
+    "seedHint": { "type": "string" }
+  }
+}
