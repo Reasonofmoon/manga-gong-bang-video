@@ -10,9 +10,18 @@ npm run validate:fixture
 
 # 2) Validate your export folder
 npm run validate:export -- path/to/export
+
+# 3) After agents write _workspace/<runId>/01_story_breakdown.json
+#    and 02_axes_drafts/*, assemble clip-package:
+npm run assemble -- <runId>
+# example (fixture dry-run workspace):
+npm run assemble:last-fixture
 ```
 
-에이전트 세션에서는 **`manga-to-video`** 스킬로 전체 파이프라인을 실행한다.
+에이전트 세션에서는 **`manga-to-video`** 스킬로 ingest→멀티샷→7축 초안까지 실행한 뒤,  
+`assemble`로 `clip-package/{slug}/`를 고정한다.
+
+실 export 경로를 받으면 Phase 1부터 다시 돌린다. 원본 `manga-gong-bang` / `_ref`는 **수정하지 않는다**.
 
 ## Layout
 

@@ -44,5 +44,18 @@ title을 slugify: 소문자, 공백→`-`, 비안전 문자 제거. 예: `neon-r
 - 최종 mp4 렌더/타임라인 자동화 없음
 - (선택) `kling-jobs.json` stub 배열만 허용
 
+## 조립 스크립트 (결정적 단계)
+
+에이전트가 `_workspace/{runId}/01_story_breakdown.json`과  
+`_workspace/{runId}/02_axes_drafts/`를 채운 뒤:
+
+```bash
+node scripts/assemble-clip-package.mjs <runId>
+# optional: --slug my-slug
+```
+
+스크립트가 `clip-package/{slug}/`를 쓰고 각 `shot.json`에 `validate-shot`을 돌린다.  
+**하드코딩 샷 테이블에 의존하지 않는다.** drafts 누락 시 실패한다.
+
 ## 검증
-가능하면 각 shot.json에 `node scripts/validate-shot.mjs`
+가능하면 각 shot.json에 `node scripts/validate-shot.mjs` (assemble가 일괄 실행)

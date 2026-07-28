@@ -23,3 +23,4 @@
 | 날짜 | 변경 내용 | 대상 | 사유 |
 |------|----------|------|------|
 | 2026-07-28 | 초기 하네스 구성 (agents 5 + skills 6 + schemas + fixture + validate) | 전체 | 스펙 승인 후 MVP 구축 |
+| 2026-07-28 | assemble-clip-package를 breakdown+drafts 입력으로 일반화; run 노트 추가 | scripts/, docs/runs/ | fixture E2E 후 제안 실행 |

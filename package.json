@@ -7,7 +7,9 @@
   "scripts": {
     "validate:export": "node scripts/validate-export.mjs",
     "validate:fixture": "node scripts/validate-export.mjs fixtures/sample-export",
-    "validate:shot": "node scripts/validate-shot.mjs"
+    "validate:shot": "node scripts/validate-shot.mjs",
+    "assemble": "node scripts/assemble-clip-package.mjs",
+    "assemble:last-fixture": "node scripts/assemble-clip-package.mjs 20260728-185925"
   },
   "engines": {
     "node": ">=20"
