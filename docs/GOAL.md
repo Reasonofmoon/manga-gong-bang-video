@@ -28,7 +28,7 @@
 | G6 | 원본 `_ref/manga-gong-bang` / 업스트림 **무수정** | ✅ |
 | G7 | **실제 만화 페이지 export** 1건 이상 end-to-end | ⏳ |
 | G8 | (선택) 7축 drafts 에이전트 refinement 품질 루프 | ⏳ |
-| **G9** | **최소 웹 배포 표면:** ZIP/fixture → pipeline → shotlist UI + Kling generate job API (`mock` 기본, `live` 훅) + Docker 배포 문서 | ✅ 구현 |
+| **G9** | **최소 웹 배포 표면:** ZIP/fixture → pipeline → shotlist UI + Kling generate job API (`mock` 기본, `live` HTTP 어댑터) + Docker/Railway/VPS 배포 문서 | ✅ 구현 |
 
 ---
 
@@ -104,3 +104,4 @@ docker compose up --build
 | 2026-07-28 | 초기 목표 등록 |
 | 2026-07-29 | A/C 가이드 |
 | 2026-07-29 | **G9 확장 명시** + `web/` 구현 + Docker 배포 |
+| 2026-07-30 | Railway/VPS 절차 + live Kling 어댑터 + `/api/health` + deploy-smoke |

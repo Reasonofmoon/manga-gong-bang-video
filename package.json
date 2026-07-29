@@ -15,7 +15,8 @@
     "pipeline": "node scripts/run-pipeline.mjs",
     "web:dev": "npm --prefix web run dev",
     "web:build": "npm --prefix web run build",
-    "web:start": "npm --prefix web run start"
+    "web:start": "npm --prefix web run start",
+    "deploy:smoke": "node scripts/deploy-smoke.mjs"
   },
   "engines": {
     "node": ">=20"

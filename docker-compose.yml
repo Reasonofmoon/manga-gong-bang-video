@@ -2,16 +2,36 @@ services:
   web:
     build: .
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:3000"
     environment:
-      - KLING_MODE=mock
-      # - KLING_MODE=live
-      # - KLING_API_KEY=${KLING_API_KEY}
+      - KLING_MODE=${KLING_MODE:-mock}
+      - KLING_API_KEY=${KLING_API_KEY:-}
+      - KLING_ACCESS_KEY=${KLING_ACCESS_KEY:-}
+      - KLING_SECRET_KEY=${KLING_SECRET_KEY:-}
+      - KLING_BASE_URL=${KLING_BASE_URL:-https://api.klingai.com}
+      - KLING_I2V_PATH=${KLING_I2V_PATH:-/v1/videos/image2video}
+      - KLING_QUERY_PATH=${KLING_QUERY_PATH:-/v1/videos/{task_id}}
+      - KLING_MODEL=${KLING_MODEL:-kling-v1}
+      - KLING_POLL_ATTEMPTS=${KLING_POLL_ATTEMPTS:-12}
+      - KLING_POLL_MS=${KLING_POLL_MS:-5000}
+      - HOSTNAME=0.0.0.0
+      - PORT=3000
     volumes:
-      # Persist uploads / job store across restarts
       - web-data:/app/web/.data
       - workspace:/app/_workspace
       - packages:/app/clip-package
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
 volumes:
   web-data:

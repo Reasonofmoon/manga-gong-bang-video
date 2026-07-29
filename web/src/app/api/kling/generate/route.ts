@@ -1,17 +1,17 @@
-import path from 'node:path';
 import { NextResponse } from 'next/server';
-import { createImageToVideoJob } from '@/lib/kling/client';
-import { readShotFiles, loadPackageShots } from '@/lib/pipeline';
-import { repoRoot } from '@/lib/paths';
+import { createImageToVideoJob, getKlingMode, pollLiveTask } from '@/lib/kling/client';
+import { findShotRefImage, loadPackageShots, readShotFiles } from '@/lib/pipeline';
 import { getSession, saveJob, type KlingJob } from '@/lib/store';
 
 export const runtime = 'nodejs';
+export const maxDuration = 300;
 
 export async function POST(req: Request) {
   try {
     const body = (await req.json()) as {
       sessionId?: string;
       shotId?: string;
+      poll?: boolean;
     };
     if (!body.sessionId || !body.shotId) {
       return NextResponse.json(
@@ -39,13 +39,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const refImagePath = path.join(
-      repoRoot(),
-      session.packagePath,
-      'shots',
-      body.shotId,
-      'ref-page.png'
-    );
+    const refImagePath = findShotRefImage(session.packagePath, body.shotId);
 
     const created = await createImageToVideoJob({
       runId: session.runId,
@@ -60,11 +54,46 @@ export async function POST(req: Request) {
     let status = created.status;
     let url = created.url;
     let error = created.status === 'failed' ? created.note : undefined;
+    let note = created.note;
 
     // Mock: complete immediately with handoff note (no real mp4)
     if (created.mode === 'mock' && status === 'queued') {
       status = 'succeeded';
       url = undefined;
+      note =
+        created.note ||
+        'Mock success: copy prompt into Kling UI (path A), or set KLING_MODE=live with credentials.';
+    }
+
+    // Live: optional short poll loop (default on for live)
+    const shouldPoll =
+      created.mode === 'live' &&
+      status === 'queued' &&
+      body.poll !== false &&
+      created.jobId &&
+      !created.jobId.startsWith('job_fail') &&
+      !created.jobId.startsWith('job_http') &&
+      !created.jobId.startsWith('job_err') &&
+      !created.jobId.startsWith('job_parse');
+
+    if (shouldPoll) {
+      const maxAttempts = Number(process.env.KLING_POLL_ATTEMPTS || 12);
+      const delayMs = Number(process.env.KLING_POLL_MS || 5000);
+      for (let i = 0; i < maxAttempts; i++) {
+        await new Promise((r) => setTimeout(r, delayMs));
+        const polled = await pollLiveTask(created.jobId);
+        status = polled.status;
+        note = polled.note || note;
+        if (polled.url) url = polled.url;
+        if (status === 'succeeded' || status === 'failed') break;
+        if (status === 'running' || status === 'queued') {
+          // continue
+        }
+      }
+      if (status === 'queued' || status === 'running') {
+        note = `${note || ''} | Still ${status} after poll — GET /api/jobs/${created.jobId} later`;
+      }
+      if (status === 'failed') error = note;
     }
 
     const job: KlingJob = {
@@ -74,23 +103,21 @@ export async function POST(req: Request) {
       status,
       mode: created.mode,
       createdAt: now,
-      updatedAt: now,
+      updatedAt: new Date().toISOString(),
       url,
       error,
-      note:
-        created.note ||
-        (created.mode === 'mock'
-          ? 'Mock success: copy prompt from shot detail into Kling manually (path A), or set KLING_MODE=live when API is wired.'
-          : undefined),
+      note,
     };
     saveJob(job);
 
     return NextResponse.json({
       ok: status !== 'failed',
       job,
+      klingMode: getKlingMode(),
       handoff: {
         promptPreview: files.prompt.slice(0, 280),
         guide: 'docs/guides/A-kling-manual-practice.md',
+        videoUrl: url,
       },
     });
   } catch (e) {

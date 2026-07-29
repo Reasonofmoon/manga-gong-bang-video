@@ -95,6 +95,16 @@ export function readShotFiles(
   };
 }
 
+/** Resolve ref-page.* under a shot folder */
+export function findShotRefImage(packageRel: string, shotId: string): string | undefined {
+  const dir = path.join(repoRoot(), packageRel, 'shots', shotId);
+  if (!fs.existsSync(dir)) return undefined;
+  const hit = fs
+    .readdirSync(dir)
+    .find((f) => /^ref-page\.(png|jpe?g|webp)$/i.test(f));
+  return hit ? path.join(dir, hit) : undefined;
+}
+
 export function fixtureExportDir(): string {
   return path.join(repoRoot(), 'fixtures', 'sample-export');
 }
