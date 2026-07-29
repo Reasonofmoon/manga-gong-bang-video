@@ -19,6 +19,12 @@
 
 ## Later (목표 이후 확장 — 아직 착수 금지)
 
-- Kling API 반자동 다운로드
+- Kling API 반자동 다운로드 → 설계: `docs/guides/C-kling-api-minimal-web.md` (M1+)
 - 패널 단위 크롭
 - 다중 렌더러
+
+## Guides
+
+- [x] A 수동 Kling 실습: `docs/guides/A-kling-manual-practice.md`
+- [x] C 최소 웹 설계: `docs/guides/C-kling-api-minimal-web.md`
+- [ ] C M1 구현 (요청 시)

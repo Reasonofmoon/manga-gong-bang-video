@@ -41,3 +41,4 @@ node scripts/run-pipeline.mjs --export <EXPORT_DIR>
 | 2026-07-28 | assemble-clip-package를 breakdown+drafts 입력으로 일반화; run 노트 추가 | scripts/, docs/runs/ | fixture E2E 후 제안 실행 |
 | 2026-07-28 | bootstrap-workspace-from-export CLI; EXPORT_DIR 파이프라인 run 20260728-192715 | scripts/bootstrap-*.mjs | 경로 미지정 시 fixture로 전체 재실행 |
 | 2026-07-28 | 최종 목표 등록 docs/GOAL.md + run-pipeline.mjs + exports/inbox | docs/, scripts/, tasks/ | 목표 명시·운영 가동 |
+| 2026-07-29 | A Kling 수동 실습 가이드 + C 최소 웹 설계 문서 | docs/guides/ | 영상 생성 경로 안내 |

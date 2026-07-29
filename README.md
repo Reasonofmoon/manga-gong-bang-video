@@ -6,11 +6,19 @@
 
 → **[`docs/GOAL.md`](docs/GOAL.md)** (등록·성공 기준·게이트)
 
+### 영상 생성 가이드
+
+| 경로 | 문서 |
+|------|------|
+| **(A) Kling 수동 실습** (지금 가능) | [`docs/guides/A-kling-manual-practice.md`](docs/guides/A-kling-manual-practice.md) |
+| **(C) Kling API 최소 웹** (설계) | [`docs/guides/C-kling-api-minimal-web.md`](docs/guides/C-kling-api-minimal-web.md) |
+
 ```bash
 # 실 export 또는 fixture
 node scripts/run-pipeline.mjs --export path/to/export
 npm run pipeline:fixture
 ```
+
 
 ## Quick start
 

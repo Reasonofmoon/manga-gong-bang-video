@@ -77,3 +77,17 @@ node scripts/assemble-clip-package.mjs <runId>
 3. 사용자가 Kling S01→Sn + NLE 조립  
 
 이 게이트를 통과하면 **프로덕션 1호 클립 패키지**로 최종 목표의 G7이 닫힌다.
+
+## 가이드 (배포·생성 경로)
+
+| 코드 | 문서 | 상태 |
+|------|------|------|
+| A | [Kling 수동 실습](guides/A-kling-manual-practice.md) | 운영 가능 (MVP와 일치) |
+| C | [Kling API 최소 웹 설계](guides/C-kling-api-minimal-web.md) | 설계만 — 구현 시 G9 추가 |
+
+## 변경 메모
+
+| 날짜 | 내용 |
+|------|------|
+| 2026-07-29 | A/C 가이드 문서 등록 |
+
