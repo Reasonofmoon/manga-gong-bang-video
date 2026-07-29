@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { guardApi } from '@/lib/api-guard';
 import { createImageToVideoJob, getKlingMode, pollLiveTask } from '@/lib/kling/client';
 import { findShotRefImage, loadPackageShots, readShotFiles } from '@/lib/pipeline';
 import { getSession, saveJob, type KlingJob } from '@/lib/store';
@@ -7,6 +8,9 @@ export const runtime = 'nodejs';
 export const maxDuration = 300;
 
 export async function POST(req: Request) {
+  const denied = guardApi(req, { bucket: 'kling', limit: 20 });
+  if (denied) return denied;
+
   try {
     const body = (await req.json()) as {
       sessionId?: string;

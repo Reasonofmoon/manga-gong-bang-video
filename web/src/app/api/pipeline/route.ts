@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { NextResponse } from 'next/server';
 import AdmZip from 'adm-zip';
+import { guardApi } from '@/lib/api-guard';
 import {
   fixtureExportDir,
   loadPackageShots,
@@ -40,6 +41,9 @@ function findExportRoot(dir: string): string | null {
 }
 
 export async function POST(req: Request) {
+  const denied = guardApi(req, { bucket: 'pipeline', limit: 8 });
+  if (denied) return denied;
+
   try {
     const form = await req.formData();
     const mode = String(form.get('mode') || 'zip');

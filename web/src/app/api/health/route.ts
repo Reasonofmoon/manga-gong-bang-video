@@ -21,6 +21,8 @@ export async function GET() {
     ok: true,
     service: 'manga-gong-bang-video-web',
     klingMode: mode,
+    authRequired: Boolean(process.env.DEPLOY_API_TOKEN || process.env.API_TOKEN),
+    rateLimitPerMin: Number(process.env.RATE_LIMIT_PER_MIN || 30),
     repoRoot: root,
     checks: {
       runPipelineScript: fs.existsSync(pipelineScript),

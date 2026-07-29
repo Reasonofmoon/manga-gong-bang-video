@@ -44,3 +44,4 @@ node scripts/run-pipeline.mjs --export <EXPORT_DIR>
 | 2026-07-29 | A Kling 수동 실습 가이드 + C 최소 웹 설계 문서 | docs/guides/ | 영상 생성 경로 안내 |
 | 2026-07-29 | G9 web 구현 + Docker 배포 문서, GOAL 경계 확장 명시 | web/, Dockerfile, docs/GOAL.md | 배포 설계·구현 |
 | 2026-07-30 | Railway/VPS 배포 절차 보강 + Kling live HTTP 어댑터 + health/smoke | docs/guides/deployment.md, web/src/lib/kling/, railway.toml | G9 운영 점검 |
+| 2026-07-30 | G9: rate limit, DEPLOY_API_TOKEN, package download, UI poll/url | web/src | 구현 완성도 |

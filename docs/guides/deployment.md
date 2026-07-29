@@ -221,6 +221,7 @@ API 키 없이 영상만 필요하면 `docs/guides/A-kling-manual-practice.md` (
 | GET | `/api/jobs/:id` | 상태 (live 재조회) |
 | GET | `/api/sessions/:id` | 세션 |
 | GET | `/api/shots/:sessionId/:shotId` | prompt 파일 |
+| GET | `/api/package/:sessionId/download` | clip-package ZIP (Path A handoff) |
 
 ---
 
@@ -228,10 +229,17 @@ API 키 없이 영상만 필요하면 `docs/guides/A-kling-manual-practice.md` (
 
 - [x] 업로드 크기 제한 (80MB)
 - [x] ZIP slip 방지
-- [ ] rate limit / 인증 (미구현 — 공개 시 추가)
+- [x] rate limit (in-memory, per IP) + optional `DEPLOY_API_TOKEN`
 - [x] API 키 서버 env 전용
 - [ ] 생성 데이터 주기 삭제
 - [ ] HTTPS 강제
+
+공개 시 권장:
+
+```bash
+DEPLOY_API_TOKEN=long-random-secret
+KLING_MODE=mock   # or live with vendor keys
+```
 
 ---
 
