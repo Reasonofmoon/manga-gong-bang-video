@@ -11,9 +11,16 @@ clip-package/
 .env.*
 !.env.example
 
-# Node (if added later)
+# Node
 node_modules/
 dist/
+web/node_modules/
+web/.next/
+web/.data/
+web/out/
+
+# Docker local
+*.local.env
 
 # OS / editor
 .DS_Store

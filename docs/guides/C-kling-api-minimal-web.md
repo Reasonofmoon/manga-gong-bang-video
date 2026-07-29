@@ -1,7 +1,8 @@
 # (C) Kling API 포함 최소 웹 — 설계 (미구현 스펙)
 
-**상태:** 설계 문서. MVP(`docs/GOAL.md`)의 **비목표(자동 mp4)** 를 확장할 때 착수.  
-**원본 앱 수정 금지.** 이 레포에만 웹 레이어 추가.
+**상태:** 설계 + **G9 구현** (`web/`, Docker). Core MVP 자동 최종 mp4는 비목표 유지; mock job + live 훅.  
+**원본 앱 수정 금지.** 이 레포에만 웹 레이어 추가.  
+**배포:** `docs/guides/deployment.md`
 
 ---
 

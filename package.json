@@ -12,7 +12,10 @@
     "assemble:last-fixture": "node scripts/assemble-clip-package.mjs 20260728-185925",
     "bootstrap": "node scripts/bootstrap-workspace-from-export.mjs",
     "pipeline:fixture": "node scripts/run-pipeline.mjs --export fixtures/sample-export",
-    "pipeline": "node scripts/run-pipeline.mjs"
+    "pipeline": "node scripts/run-pipeline.mjs",
+    "web:dev": "npm --prefix web run dev",
+    "web:build": "npm --prefix web run build",
+    "web:start": "npm --prefix web run start"
   },
   "engines": {
     "node": ">=20"

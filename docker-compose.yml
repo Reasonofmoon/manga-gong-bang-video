@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - KLING_MODE=mock
+      # - KLING_MODE=live
+      # - KLING_API_KEY=${KLING_API_KEY}
+    volumes:
+      # Persist uploads / job store across restarts
+      - web-data:/app/web/.data
+      - workspace:/app/_workspace
+      - packages:/app/clip-package
+
+volumes:
+  web-data:
+  workspace:
+  packages:

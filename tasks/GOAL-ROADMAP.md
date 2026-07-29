@@ -27,4 +27,5 @@
 
 - [x] A 수동 Kling 실습: `docs/guides/A-kling-manual-practice.md`
 - [x] C 최소 웹 설계: `docs/guides/C-kling-api-minimal-web.md`
-- [ ] C M1 구현 (요청 시)
+- [x] G9 web + Docker: `web/`, `docs/guides/deployment.md`
+- [ ] G9 live Kling HTTP (vendor) when API key ready
