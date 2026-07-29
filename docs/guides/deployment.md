@@ -26,10 +26,15 @@ npm run dev
 ```powershell
 # Docker
 cd manga-gong-bang-video
-docker compose up --build
-# http://localhost:3000
+docker compose up -d --build
+# default host port 3000 — if busy:
+#   $env:PORT=13080; docker compose up -d
+# http://localhost:3000  (or :13080)
 node scripts/deploy-smoke.mjs http://127.0.0.1:3000
 ```
+
+**포트 충돌:** 호스트 3000이 이미 쓰이면 `PORT=13080` 등으로 매핑한다.  
+(`docker-compose.yml` 의 `"${PORT:-3000}:3000"`)
 
 ---
 
